@@ -1,2 +1,2 @@
 # Woo-Payment-Gateways-Bank-Indo-Kode-Payment
-Wordpress plugin addon for woocommerce 
+WooCommerce default provides 1 bank transfer payment gateway for all your bank accounts.  And this WooCommerce extension which provides Indonesian banks (BCA, BNI, Mandiri and BRI) as payment method for checkout on WooCommerce. And give code payment to make it easier to check the transfer of consumer funds in the seller's account. Code payment is 3 digits (random) added to total shopping automatically. This plugin does nothing except:
