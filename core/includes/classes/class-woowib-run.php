@@ -42,7 +42,7 @@ class WOOWIB_Run{
 	 */
 	private function add_hooks(){
 	
-		//add_action( 'plugin_action_links_' . WOOWIB_PLUGIN_BASE, array( $this, 'add_plugin_action_link' ), 20 );
+		add_action( 'plugin_action_links_' . WOOWIB_PLUGIN_BASE, array( $this, 'add_plugin_action_link' ), 20 );
 	
 	}
 
@@ -58,15 +58,20 @@ class WOOWIB_Run{
 	* Adds action links to the plugin list table
 	*
 	* @access	public
-	* @since	2.2.1
+	* @since	2.2.5
 	*
 	* @param	array	$links An array of plugin action links.
 	*
 	* @return	array	An array of plugin action links.
+	*
 	*/
 	public function add_plugin_action_link( $links ) {
+		$setting_url = add_query_arg( array(  
+			'page' => 'woowib-setting', 
+		), admin_url( 'options-general.php' ) );
 
-		$links['our_shop'] =  sprintf( '<a href="%s" title="Custom Link" style="font-weight:700;">%s</a>', '#', __( 'Custom Link', 'woowib' ) );
+		$links['setting_page'] =  sprintf( '<a href="%s" title="Setting" style="color:#2271b1;">%s</a>', $setting_url, __( 'Setting', 'woowib' ) );
+		$links['donate_us'] =  sprintf( '<a href="%s" title="Donate us" style="color:#2271b1;">%s</a>', 'https://paypal.me/initialdhi', __( 'Donate us', 'woowib' ) );
 
 		return $links;
 	}

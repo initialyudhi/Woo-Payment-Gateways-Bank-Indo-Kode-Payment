@@ -22,7 +22,7 @@ class WC_Gateway_BRI extends WC_Gateway_Bank {
      */
     public function __construct() {
 		$this->id                 = 'bank_bri';
-		$this->name 			  = 'Bank BRI';
+		$this->name 			  = 'BRI';
 		
 		$this->init(); 	
     }	

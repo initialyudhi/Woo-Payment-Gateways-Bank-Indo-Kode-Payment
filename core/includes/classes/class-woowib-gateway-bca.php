@@ -22,7 +22,7 @@ class WC_Gateway_BCA extends WC_Gateway_Bank {
      */
     public function __construct() {
 		$this->id                 = 'bank_bca';
-		$this->name 			  = 'Bank BCA';
+		$this->name 			  = 'BCA';
 		
 		$this->init(); 	
     }	

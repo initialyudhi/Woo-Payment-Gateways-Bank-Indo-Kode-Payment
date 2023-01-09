@@ -30,13 +30,13 @@ class WC_Gateway_Bank extends WC_Payment_Gateway {
      * Init the class
      */  
     function init(){
-		$this->icon               = apply_filters( "woocommerce_{$this->id}_icon", WOOWIB_DIR_IMAGES. $this->id.'.png' );
+		$this->icon               = apply_filters( "woocommerce_{$this->id}_icon", WOOWIB_DIR_IMAGES. $this->id.'.svg' );
 		$this->has_fields         = false;
 		$this->method_title       = __( $this->name, 'woowib' );
 		$this->method_description = __( "Allows payments using direct bank/wire transfer by {$this->name}.", 'woowib' );
 
         // Define user set variables
-		$this->title        = $this->get_option( 'the_title', sprintf( __( '', 'woowib' ), $this->name ) ); //Transfer via %s
+		$this->title        = $this->get_option( 'the_title', sprintf( __( 'Transfer via %s', 'woowib' ), $this->name ) ); //Transfer via %s
 		$this->description  = $this->get_option( 'the_description', $this->method_description );
 		$this->instructions = $this->get_option( 'the_instructions', $this->method_description );
 
@@ -103,14 +103,14 @@ class WC_Gateway_Bank extends WC_Payment_Gateway {
 				'title'       => __( 'Account Name', 'woowib' ),
 				'type'        => 'text',
 				'description' => __( 'This account name is displayed during checkout process and related emails to the customer', 'woowib' ),
-				'default'     => __( 'Jonno', 'woowib' ),
+				'default'     => __( '', 'woowib' ),
 				'desc_tip'    => true,
 			),
 			'the_account_number' => array(
 				'title'       => __( 'Account Number', 'woowib' ),
 				'type'        => 'text',
 				'description' => __( 'This account number is displayed during checkout process and related emails to the customer', 'woowib' ),
-				'default'     => __( '0999777444555', 'woowib' ),
+				'default'     => __( '', 'woowib' ),
 				'desc_tip'    => true,
 			),
 		);
@@ -202,26 +202,26 @@ class WC_Gateway_Bank extends WC_Payment_Gateway {
 	 * @return void
 	 */
 	function account_information(){
-		/* $icon_plugin_dir = WOOWIB_DIR_IMAGES . $this->id.'.png'; 
-    		echo "<h5 class='order_details_title {$this->id}'> <img src='".$icon_plugin_dir."' style='height:25px;margin-right: 10px;display: inline-table;'/>" . sprintf( apply_filters( 'wc_gateway_bank_order_details_title', __( "%s Account", 'woowib' ) ), $this->name ) . "</h5>" . PHP_EOL;
- 		*/
+		 
     	$bank_account = apply_filters( "woocommerce_{$this->id}_accounts", $this->account_details );
 
 		$bank_account = (object) $bank_account;
 
-		echo '<ul class="account_bank_details bank_details">' . PHP_EOL;
+		echo '<div class="account-bank-details bank-details">' . PHP_EOL;
 
 		foreach ( $bank_account as $field_key => $field ) {
+			echo '<div class="row-bank-details">' . PHP_EOL;
 		    if ( ! empty( $field['value'] ) ) {
-		    	echo '<li class="' . esc_attr( $field_key ) . '"><span class="label">' . esc_attr( $field['label'] ) . '</span> : <strong>' . wptexturize( $field['value'] ) . '</strong></li>' . PHP_EOL;
+		    	echo '<div class="cell-detail ' . esc_attr( $field_key ) . ' ">' . esc_attr( $field['label'] ) . '</div><div class="cell-detail"><span class="two-dot">:</span><span class="detail-val">' . wptexturize( $field['value'] ) . '</span></div>' . PHP_EOL;
 		    }
 
 			if (  empty( $field['value'] ) && ( current_user_can('administrator') || current_user_can('editor')) ) {
 				__('Manage your bank account under : Woocommerce > Settings > Payments');
 
 			}
+			echo '</div>' . PHP_EOL;
 		}
 
-		echo '</ul>';
+		echo '</div>';
 	}
 }

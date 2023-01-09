@@ -39,7 +39,8 @@ class WOOWIB_Settings{
 		add_filter( 'woocommerce_payment_gateways', [ $this, 'register'] );
 		add_action( 'woocommerce_cart_calculate_fees', [$this, 'add_kode' ] );
 		add_action( 'wp_enqueue_scripts', [$this,'loads_woowib_script_assets'] );
-		add_filter( "woocommerce_gateway_icon", [$this,'payment_icon_class_tag'], 10, 2 );
+		add_action( 'admin_menu', [$this,'add_admin_page']); 
+		add_action('admin_init',[$this,'save_setting']);
 	}
 
 	/**
@@ -63,12 +64,9 @@ class WOOWIB_Settings{
 
 		/** style */
 		wp_enqueue_style( 'woowib-css', WOOWIB_DIR_CSS.'style.css' , false, WOOWIB_VERSION,'all' ); 
-		 
-		 
+	 
 	}
 	
-
- 
 	/**
 	 * Requiring files
 	 * @param array
@@ -117,8 +115,10 @@ class WOOWIB_Settings{
 	public function add_kode(){
 		global $woocommerce;
 
-		$enable = 1;  
-		$title = __( 'Payment Code', 'plugins-wpkonten' );
+		$options = get_option('woowib_setting');
+
+		$enable = (!$options['enable_kode_payment'] || $options['enable_kode_payment']=='')?0:1;  
+		$title = __( 'Payment Code', 'woocommerce' );
 		
 		
 		if ( $enable == 1 && $woocommerce->cart->subtotal != 0){
@@ -146,16 +146,80 @@ class WOOWIB_Settings{
 	 * Return icon bank img
 	 *
 	 * @access	public
-	 * @since	2.2.3
+	 * @since	2.2.3 , disable since 2.2.5 //woocommerce_gateway_icon
 	 * @return	html img
 	 */
 	
-	 function payment_icon_class_tag( $icon, $id ){ 
+	function payment_icon_class_tag( $icon, $id ){ 
 		if ( in_array($id,['bank_bca','bank_bni','bank_bri','bank_mandiri']) ) {
 			return '<img class="payment-woobankindo payment-bank-icon icon-'.$id.'" src="' . WOOWIB_DIR_IMAGES. $id.'.png" > '; 
 		} else {
 			return $icon;
 		}
 	
+	}
+
+	/**
+	 * add menu to sub general option
+	 *
+	 * @access	public
+	 * @since	2.2.5
+	 * @return	string setting menu 
+	 */
+	function add_admin_page() {
+		 
+		add_submenu_page(
+	        'options-general.php',
+	        'WooWIB Setting',
+	        'WooWIB Setting',
+	        'manage_options',
+	        'woowib-setting',
+	        [$this,'setting_callback'] 
+	    );
+
+	}
+
+	
+	/**
+	 * callback setting html
+	 *
+	 * @access	public
+	 * @since	2.2.5
+	 * @return	html page setting
+	 */
+
+	function setting_callback(){ 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		$default_tab = null;
+  		$tab = isset($_GET['tab']) ? $_GET['tab'] : $default_tab;
+
+		$options = get_option('woowib_setting');
+		 
+
+		include(WOOWIB_TEMPLATE_ADMIN.'html-setting.php');
+	
+	 
+	}
+
+	/**
+	 * callback setting save action
+	 *
+	 * @access	public
+	 * @since	2.2.5
+	 * @return	boolean setting
+	 */
+
+
+	public function save_setting(){
+		if(!isset($_POST['nonce_setting_woowib_1'])) return;
+
+		if(!wp_verify_nonce($_POST['nonce_setting_woowib_1'],'woowib_setting')) return;
+		$data = $_POST;
+		unset($data['nonce_setting_woowib_1']);
+
+		update_option('woowib_setting',$data);
 	}
 }

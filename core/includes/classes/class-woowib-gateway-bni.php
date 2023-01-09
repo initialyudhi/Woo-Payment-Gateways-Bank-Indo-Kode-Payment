@@ -22,7 +22,7 @@ class WC_Gateway_BNI extends WC_Gateway_Bank {
      */
     public function __construct() {
 		$this->id                 = 'bank_bni';
-		$this->name 			  = 'Bank BNI';
+		$this->name 			  = 'BNI';
 		
 		$this->init(); 	
     }	

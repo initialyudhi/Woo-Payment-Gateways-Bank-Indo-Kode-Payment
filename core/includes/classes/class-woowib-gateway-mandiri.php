@@ -22,7 +22,7 @@ class WC_Gateway_Mandiri extends WC_Gateway_Bank {
      */
     public function __construct() {
 		$this->id                 = 'bank_mandiri';
-		$this->name 			  = 'Bank Mandiri';
+		$this->name 			  = 'Mandiri';
 		
 		$this->init(); 	
     }	

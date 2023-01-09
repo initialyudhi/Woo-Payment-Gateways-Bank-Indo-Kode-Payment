@@ -1,63 +1,16 @@
-#order_review #payment div.payment_box, 
-.woocommerce-cart #payment div.payment_box, 
-.woocommerce-checkout #payment div.payment_box {
-    position: relative;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 1em;
-    margin: 1em 0;
-    font-size: .82em;
-    border-radius: 2px;
-    line-height: 1.5;
-    background-color: #dfdcde;
-    color: #515151;
+.account-bank-details {
+    display:block; 
+}
+.row-bank-details {
+    display:block;
+}
+.cell-detail {
+    display:inline-block;
+}
+.row-bank-details .cell-detail .two-dot{
+    padding:0 10px;
 }
 
-#order_review #payment div.payment_box::before, 
-.woocommerce-cart #payment div.payment_box::before, 
-.woocommerce-checkout #payment div.payment_box::before {
-    content: "";
-    display: block;
-    border: 1em solid #dfdcde;
-    border-right-color: transparent;
-    border-left-color: transparent;
-    border-top-color: transparent;
-    position: absolute;
-    top: -0.75em;
-    left: 0;
-    margin: -1em 0 0 2em;
-}
-
-#order_review #payment ul.payment_methods li:not(.woocommerce-notice)::after, 
-.woocommerce-cart #payment ul.payment_methods li:not(.woocommerce-notice)::after, 
-.woocommerce-checkout #payment ul.payment_methods li:not(.woocommerce-notice)::after {
-    clear: both;
-}
-
-#order_review #payment div.payment_box p:last-child, 
-.woocommerce-cart #payment div.payment_box p:last-child, 
-.woocommerce-checkout #payment div.payment_box p:last-child {
-    margin-bottom: 0;
-}
-
-#order_review #payment .wc_payment_methods .wc_payment_method label img.payment-woobankindo.payment-bank-icon{
-    max-height: 20px;
-    margin-left: 0px;
-    float: unset!important;
-    display: inline;
-    
-}
-#order_review #payment .wc_payment_methods .payment_method_bank_mandiri label img.payment-woobankindo.payment-bank-icon{
-    max-height: 30px;
-}
-#order_review #payment .wc_payment_methods .payment_method_bank_bni label img.payment-woobankindo.payment-bank-icon{
-    max-height: 20px;
-}
-
-#order_review #payment .wc_payment_methods .wc_payment_method .payment_box .account_bank_details{
-    margin: 10px;
-}
- 
-#order_review #payment .wc_payment_methods .wc_payment_method .payment_box .account_bank_details li{
-    font-size: 12px;
+.row-bank-details .cell-detail .detail-val{
+    padding:0 10px;
 }
