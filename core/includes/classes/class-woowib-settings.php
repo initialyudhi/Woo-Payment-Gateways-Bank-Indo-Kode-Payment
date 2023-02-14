@@ -109,23 +109,31 @@ class WOOWIB_Settings{
 	 *
 	 * @access	public
 	 * @since	2.2.1
-	 * @return	string The plugin name
+	 * @lastupdate	2.3.0
+	 * @return	string The code
 	 */
 
 	public function add_kode(){
 		global $woocommerce;
 
+		$defaultBank = ['bank_bca','bank_bri','bank_bni','bank_mandiri']; 
 		$options = get_option('woowib_setting');
+		$payment_method_id = WC()->session->get('chosen_payment_method');
+		$checkFirstSet = get_option('_first_set_enable_payment');
 
 		$enable = (!$options['enable_kode_payment'] || $options['enable_kode_payment']=='')?0:1;  
+		$min_kode_payment = (!$options['min_kode_payment'] || $options['min_kode_payment']=='')?1:$options['min_kode_payment'];  
+		$max_kode_payment = (!$options['max_kode_payment'] || $options['max_kode_payment']=='')?200:$options['max_kode_payment']; 
+		$enabled_gateways = (!$options['enabled_gateways'] || $options['enabled_gateways']=='')?$defaultBank:$options['enabled_gateways'];  
+		$enabled_gateways = (!$checkFirstSet)?$defaultBank:$options['enabled_gateways'];
 		$title = __( 'Payment Code', 'woocommerce' );
 		
 		
 		if ( $enable == 1 && $woocommerce->cart->subtotal != 0){
 			if(! is_cart()){
-                $cost = rand(100, 999);
+                $cost = rand($min_kode_payment, $max_kode_payment);
 
-				if($cost != 0)
+				if($cost != 0 && in_array($payment_method_id,$enabled_gateways))
 					$woocommerce->cart->add_fee( __($title, 'woocommerce'), $cost);
 			}
 		}
@@ -146,7 +154,7 @@ class WOOWIB_Settings{
 	 * Return icon bank img
 	 *
 	 * @access	public
-	 * @since	2.2.3 , disable since 2.2.5 //woocommerce_gateway_icon
+	 * @since	2.2.3 , disable since 2.3.0 //woocommerce_gateway_icon
 	 * @return	html img
 	 */
 	
@@ -197,8 +205,7 @@ class WOOWIB_Settings{
   		$tab = isset($_GET['tab']) ? $_GET['tab'] : $default_tab;
 
 		$options = get_option('woowib_setting');
-		 
-
+		  
 		include(WOOWIB_TEMPLATE_ADMIN.'html-setting.php');
 	
 	 
@@ -209,6 +216,7 @@ class WOOWIB_Settings{
 	 *
 	 * @access	public
 	 * @since	2.2.5
+	 * @lastupdate	2.3.0
 	 * @return	boolean setting
 	 */
 
@@ -220,6 +228,12 @@ class WOOWIB_Settings{
 		$data = $_POST;
 		unset($data['nonce_setting_woowib_1']);
 
+		update_option('woowib_setting','');
 		update_option('woowib_setting',$data);
+
+		$checkFirstSet = get_option('_first_set_enable_payment');
+		if(!$checkFirstSet){
+			update_option('_first_set_enable_payment',1);
+		}
 	}
 }

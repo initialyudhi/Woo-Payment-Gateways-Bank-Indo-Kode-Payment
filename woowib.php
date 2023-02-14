@@ -5,19 +5,19 @@
  * @package       woo-payment-gateways-bank-indo-kode-payment
  * @author        Yudhi Purnomo
  * @license       gplv2
- * @version       2.2.5
+ * @version       2.3.0
  *
  * @wordpress-plugin
  * Plugin Name:   WooWIB - Payment Gateways Bank Indonesia
  * Plugin URI:    #
- * Description:   Payment gateway with indonesia Banks and code payment. Add Indonesian Banks to WooCommerce payment gateway and Code payment to make it easier to check the transfer of consumer funds in the seller's account. Code payment is 3 digits (random) added to total shopping automatically.
- * Version:       2.2.5.1
+ * Description:   Payment gateway with indonesia Banks and code payment. Add Indonesian Banks to WooCommerce payment gateway and Code payment to make it easier to check the transfer of consumer funds in the seller's account. Code payment is 3 digits (random) added to total shopping automatically. Hopefully barokah & useful :)
+ * Version:       2.3.1
  * Text Domain: woowib
  * Requires at least: 5.7.0
  * Tested up to: 6.1.1
  * WC requires at least: 6.7.0
  * WC tested up to: 7.2.2
- * Stable tag: 2.2.5
+ * Stable tag:  2.3.1
  * Author:        Yudhi Purnomo
  * Author URI:    mailto:yudhipur19@gmail.com 
  * Domain Path:   /languages
@@ -45,8 +45,8 @@ if ( !in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', 
 }
 
 define( 'WOOWIB_NAME',			'WooWIB - Payment Gateways Bank Indonesia' );
-define( 'WOOWIB_VERSION',		'2.2.5' );
-define( 'WOOWIB_NONCE',		'_woowib-225' );
+define( 'WOOWIB_VERSION',		'2.3.1' );
+define( 'WOOWIB_NONCE',		'_woowib-231' );
 define( 'WOOWIB_PLUGIN_FILE',	__FILE__ );
 define( 'WOOWIB_PLUGIN_BASE',	plugin_basename( WOOWIB_PLUGIN_FILE ) );
 define( 'WOOWIB_PLUGIN_DIR',	plugin_dir_path( WOOWIB_PLUGIN_FILE ) );

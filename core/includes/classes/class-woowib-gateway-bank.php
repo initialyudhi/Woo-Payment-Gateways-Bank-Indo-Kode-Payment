@@ -36,9 +36,9 @@ class WC_Gateway_Bank extends WC_Payment_Gateway {
 		$this->method_description = __( "Allows payments using direct bank/wire transfer by {$this->name}.", 'woowib' );
 
         // Define user set variables
-		$this->title        = $this->get_option( 'the_title', sprintf( __( 'Transfer via %s', 'woowib' ), $this->name ) ); //Transfer via %s
-		$this->description  = $this->get_option( 'the_description', $this->method_description );
-		$this->instructions = $this->get_option( 'the_instructions', $this->method_description );
+		$this->title        = $this->get_option( 'title', sprintf( __( 'Transfer via %s', 'woowib' ), $this->name ) ); //Transfer via %s
+		$this->description  = $this->get_option( 'description', $this->method_description );
+		$this->instructions = $this->get_option( 'instructions', $this->method_description );
 
 		// Bank BCA account fields shown on the thanks page and in emails
 		$this->account_details = get_option( "woocommerce_{$this->id}_accounts",
@@ -78,35 +78,35 @@ class WC_Gateway_Bank extends WC_Payment_Gateway {
 				'label'   => __( "Enable {$this->name} Transfer", 'woowib' ),
 				'default' => 'yes'
 			),
-			'the_title' => array(
+			'title' => array(
 				'title'       => __( 'Title', 'woowib' ),
 				'type'        => 'text',
 				'description' => __( 'This title will be seen by the customer upon checkout process', 'woowib' ),
 				'default'     => __( "Direct {$this->name} Transfer", 'woowib' ),
 				'desc_tip'    => true,
 			),
-			'the_description' => array(
+			'description' => array(
 				'title'       => __( 'Description', 'woowib' ),
 				'type'        => 'textarea',
 				'description' => __( 'Payment method description that the customer will see on your checkout.', 'woowib' ),
-				'default'     => __( 'Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won\'t be shipped until the funds have cleared in our account.', 'woowib' ),
+				'default'     => __( '', 'woowib' ),
 				'desc_tip'    => true,
 			),
-			'the_instructions' => array(
+			'instructions' => array(
 				'title'       => __( 'Instructions', 'woowib' ),
 				'type'        => 'textarea',
 				'description' => __( 'Instructions that will be added to the thank you page and emails.', 'woowib' ),
 				'default'     => '',
 				'desc_tip'    => true,
 			),
-			'the_account_name' => array(
+			'account_name' => array(
 				'title'       => __( 'Account Name', 'woowib' ),
 				'type'        => 'text',
 				'description' => __( 'This account name is displayed during checkout process and related emails to the customer', 'woowib' ),
 				'default'     => __( '', 'woowib' ),
 				'desc_tip'    => true,
 			),
-			'the_account_number' => array(
+			'account_number' => array(
 				'title'       => __( 'Account Number', 'woowib' ),
 				'type'        => 'text',
 				'description' => __( 'This account number is displayed during checkout process and related emails to the customer', 'woowib' ),

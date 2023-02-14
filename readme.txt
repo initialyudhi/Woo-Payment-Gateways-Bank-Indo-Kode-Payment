@@ -1,5 +1,5 @@
 === WooWIB - Payment Gateways Bank Indonesia ===
-Version: 2.2.5.1
+Version: 2.3.1
 Donate link: https://paypal.me/initialdhi 
 Contributors: initialdhi
 Tags: woocommerce payment, indonesian banks,woocommerce, online store, cart, checkout, shopping, shipping, payment, payment method indonesia, bank indonesia, BCA, BNI, Mandiri, woo, ecommerce, e-commerce, commerce, woothemes, wordpress ecommerce, bank
@@ -7,7 +7,7 @@ Requires at least: 5.7.0
 Tested up to:  6.1.1
 WC requires at least: 6.7.0
 WC tested up to: 7.2.2
-Stable tag: 2.2.5
+Stable tag: 2.3.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -21,7 +21,7 @@ WooCommerce default provides 1 bank transfer payment gateway for all your bank a
 2. Providing Bank information on order notes on the dashboard, customer email, etc
 3. Providing Payment code for checkout
 
-Semoga bermanfaat :)
+Hopefully barokah & useful :)
 
 == Frequently Asked Questions ==
 
@@ -37,11 +37,22 @@ An answer to that question.
 3. Search for `WooWIB - Payment Gateways Bank Indonesia` and click 'Install Now' or click on the `upload` link to upload `woo-payment-gateways-bank-indo-kode-payment.zip`
 4. Click on `Activate plugin`
 5. For manual install , upload `woo-payment-gateways-bank-indo-kode-payment` folder to the `/wp-content/plugins/` directory
-6. Unzip the file
-7. Activate the plugin through the 'Plugins' menu in WordPress
+6. You can also download from [Github](https://github.com/initialyudhi/Woo-Payment-Gateways-Bank-Indo-Kode-Payment)
+7. Unzip the file
+8. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
 
+= 2.3.1 =
+* Enhancement  - some bux fix checkout page 
+ 
+= 2.3.0 =
+* Enhancement  - bux fix 
+* Dev - Add setting for minimal (default 1 ) - maximal (default 200 )  payment code
+* Dev - Add for choose payment gateway active to payment code
+
+= 2.2.5.2 =
+* Enhancement  - bux fix 
 
 = 2.2.5.1 =
 * Enhancement  - bux fix 
